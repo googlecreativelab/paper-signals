@@ -34,8 +34,8 @@ limitations under the License.
 #define ACK_DOWN 20
 
 // Crypto Currency
-#define CURRENCY_UP 0
-#define CURRENCY_DOWN 180
+#define CURRENCY_UP 180
+#define CURRENCY_DOWN 0
 #define CURRENCY_NO_CHANGE 90
 
 // Umbrella
@@ -50,6 +50,8 @@ limitations under the License.
 // Timer
 #define TIMER_START 0
 #define TIMER_END 180
+#define TIMER_WIGGLE_TOP 0
+#define TIMER_WIGGLE_BOTTOM 180
 
 // RocketLaunch
 #define ROCKET_ON_TIME 43200000 // Rocket shows fire for 12 hours

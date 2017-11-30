@@ -163,6 +163,11 @@ void PaperSignals::TimerExecution(String JSONData)
     MoveServoToPosition(TIMER_START, 0);
     MoveServoToPosition(TIMER_END, speed);
 
+    MoveServoToPosition(TIMER_WIGGLE_TOP, 10);
+    MoveServoToPosition(TIMER_WIGGLE_BOTTOM, 10);
+    MoveServoToPosition(TIMER_WIGGLE_TOP, 10);
+    MoveServoToPosition(TIMER_WIGGLE_BOTTOM, 10);
+
     lastTimerTime = seconds;
   }
 }
