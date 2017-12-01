@@ -29,10 +29,6 @@ limitations under the License.
 
 #define CENTER_POSITION 90
 
-// Acknowledgement
-#define ACK_UP 65
-#define ACK_DOWN 20
-
 // Crypto Currency
 #define CURRENCY_UP 180
 #define CURRENCY_DOWN 0
@@ -128,8 +124,6 @@ public:
 
 	double GetBitcoin();
 	double GetEthereum();
-
-	void AcknowledgeChange();
 
 	void MoveServoToPosition(int position, int speed);
 
