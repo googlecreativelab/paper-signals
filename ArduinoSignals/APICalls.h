@@ -11,7 +11,7 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License. 
+limitations under the License.
 */
 
 #include <Arduino.h>
@@ -19,7 +19,7 @@ limitations under the License.
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 #include <ESP8266HTTPClient.h>
-#include <Servo.h> 
+#include <Servo.h>
 #include <Time.h>
 #include "Credentials.h"
 
@@ -39,8 +39,8 @@ limitations under the License.
 #define CURRENCY_NO_CHANGE 90
 
 // Umbrella
-#define UMBRELLA_OPEN 120
-#define UMBRELLA_CLOSED 0
+#define UMBRELLA_OPEN 60
+#define UMBRELLA_CLOSED 180
 
 // Shorts or Pants
 #define SHORTSORPANTS_PANTS 0
@@ -106,7 +106,7 @@ public:
 	bool throttleStockAPI();
 
 public:
-	
+
 	// Use WiFiClientSecure class to create TLS connection
 	WiFiClientSecure client;
 	const int httpsPort = 443;
