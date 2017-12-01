@@ -11,15 +11,15 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License. 
+limitations under the License.
 */
 
 /*
 Copyright © 2017 All market data provided by Barchart Solutions.
 
-BATS market data is at least 15-minutes delayed. Forex market data is at least 10-minutes delayed. 
-AMEX, NASDAQ, NYSE and futures market data (CBOT, CME, COMEX and NYMEX) is end-of-day. 
-Information is provided 'as is' and solely for informational purposes, not for trading purposes or advice, 
+BATS market data is at least 15-minutes delayed. Forex market data is at least 10-minutes delayed.
+AMEX, NASDAQ, NYSE and futures market data (CBOT, CME, COMEX and NYMEX) is end-of-day.
+Information is provided 'as is' and solely for informational purposes, not for trading purposes or advice,
 and is delayed. To see all exchange delays and terms of use, please see our disclaimer.
 */
 
@@ -97,8 +97,8 @@ String makeLessPrettyJSON(String JSONData)
   String notPretty = "";
   for(int i = 0; i < JSONData.length(); i++)
   {
-    if(JSONData.charAt(i) != '\n' && JSONData.charAt(i) != '\r' && 
-      JSONData.charAt(i) != ' ' && JSONData.charAt(i) != '  ' && 
+    if(JSONData.charAt(i) != '\n' && JSONData.charAt(i) != '\r' &&
+      JSONData.charAt(i) != ' ' && JSONData.charAt(i) != '  ' &&
       JSONData.charAt(i) != '[' && JSONData.charAt(i) != ']')
     {
       notPretty += JSONData.charAt(i);
@@ -134,12 +134,6 @@ void PaperSignals::MoveServoToPosition(int position, int speed)
   }
 
   currentServoPosition = position;
-}
-
-void PaperSignals::AcknowledgeChange()
-{
-  MoveServoToPosition(ACK_UP, 10);
-  MoveServoToPosition(ACK_DOWN, 10);
 }
 
 void PaperSignals::DefaultExecution(String JSONData)
@@ -240,12 +234,12 @@ void PaperSignals::CryptoCurrencyExecution(String JSONData)
       {
         Serial.println("Bitcoin is Up");
         MoveServoToPosition(CURRENCY_UP, 10);
-      } 
+      }
       else
       {
         Serial.println("Bitcoin No Change");
         MoveServoToPosition(CURRENCY_NO_CHANGE, 10);
-      } 
+      }
     }
     else if(CurrencyType == Ethereum)
     {
@@ -257,25 +251,25 @@ void PaperSignals::CryptoCurrencyExecution(String JSONData)
       {
         Serial.println("Ethereum is Down");
         MoveServoToPosition(CURRENCY_DOWN, 10);
-      } 
+      }
       else if(curChange > 0)
       {
         Serial.println("Ethereum is Up");
         MoveServoToPosition(CURRENCY_UP, 10);
-      } 
+      }
       else
       {
         Serial.println("Ethereum No Change");
         MoveServoToPosition(CURRENCY_NO_CHANGE, 10);
-      } 
+      }
     }
     else
     {
       Serial.println("Currency not supported");
       return;
     }
-    
-    
+
+
 }
 
 void PaperSignals::CelebrateExecution(String JSONData)
@@ -313,7 +307,7 @@ void PaperSignals::CelebrateExecution(String JSONData)
 }
 bool PaperSignals::throttleWeatherAPI()
 {
-  if(millis() < lastWeatherCall) lastWeatherCall = 0; // Reset every 49 days 
+  if(millis() < lastWeatherCall) lastWeatherCall = 0; // Reset every 49 days
 
   if(!updatedIntentTimeStamp && millis() - lastWeatherCall < timeBetweenWeatherCalls) return true;
   lastWeatherCall = millis();
@@ -379,7 +373,7 @@ void PaperSignals::UmbrellaExecution(String JSONData)
   String Location = MaybeAlsoACity + " " + City + " " + State + " " + Address;
 
   String WeatherJSON = GetWeather(Location);
-  
+
   DynamicJsonBuffer jsonBufferWeather;
   JsonObject& weatherRoot = jsonBufferWeather.parseObject(WeatherJSON);
 
@@ -399,7 +393,7 @@ void PaperSignals::UmbrellaExecution(String JSONData)
   }
 }
 
-// Performs Geocoding and a dark sky call to 
+// Performs Geocoding and a dark sky call to
 String PaperSignals::GetWeather(String Location)
 {
   String latLong = GetLatLong(Location);
@@ -407,7 +401,7 @@ String PaperSignals::GetWeather(String Location)
   String curTimeHost = "currentmillis.com";
   String curTimeURL = "/time/minutes-since-unix-epoch.php";
   String unixTime = getJsonHTTP(curTimeHost, curTimeURL);
-  
+
   unsigned long unixTimeLong = atol(unixTime.c_str())*60;
   String finalUnixTime = String(unixTimeLong);
 
@@ -657,13 +651,13 @@ void PaperSignals::StockExecution(String JSONData)
     String debugMsg = StockSymbol + " is up";
      Serial.println(debugMsg);
     MoveServoToPosition(CURRENCY_UP, 10);
-  } 
+  }
   else
   {
     String debugMsg = StockSymbol + " no change";
      Serial.println(debugMsg);
     MoveServoToPosition(CURRENCY_NO_CHANGE, 10);
-  } 
+  }
 }
 
 void PaperSignals::CustomExecution(String JSONData)
@@ -747,7 +741,6 @@ String PaperSignals::getSignalByID(String signalID){
       {
         updatedIntentTimeStamp = true;
         numTestServoSwings = 0;
-        AcknowledgeChange();
       }
       else {
         updatedIntentTimeStamp = false;
