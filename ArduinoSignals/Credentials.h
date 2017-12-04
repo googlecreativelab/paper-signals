@@ -18,7 +18,10 @@ limitations under the License.
 const String SSID = "YOUR_WIFI_NETWORK"; 
 const String Password = "YOUR_WIFI_PASSWORD";
 
-const String SignalID = "YOUR-SIGNAL-ID";
+/* Your Signal ID should be lowercase, and each word should be separated by dashes. 
+If Google Assistant spoke too quickly, you can ask to repeat the identifier at any 
+time be saying "What is the setup code for [SIGNAL NAME]?" */
+const String SignalID = "your-signal-id";
 
 /* Enter the below API keys to track the weather on Umbrella Signal and Pants Signal. */
 const String DarkSkyAPIKey = "YOUR_DARK_SKY_API_KEY";
