@@ -145,15 +145,17 @@ void PaperSignals::TimerExecution(String JSONData)
 {
   DynamicJsonBuffer jsonBuffer;
   JsonObject& root = jsonBuffer.parseObject(JSONData);
-  int seconds = root["parameters"]["duration"]["amount"];
+  int amount=root["parameters"]["duration"]["amount"];
+  String unit = root["parameters"]["duration"]["unit"];
+  int seconds = TimerConvertSeconds(amount,unit);
 
-  Serial.print("Timer: ");
-  Serial.println(seconds);
+  Serial.print("Timer: "); Serial.print(amount); Serial.print(unit); Serial.print("("); Serial.print(seconds); Serial.println("s)");
 
-  if(lastTimerTime != seconds)
+  if(lastTimerTime != seconds || lastTimerUnit != unit)
   {
     int totalDistance = abs(TIMER_END - TIMER_START);
     int speed = (seconds*1000)/totalDistance;
+    
     MoveServoToPosition(TIMER_START, 0);
     MoveServoToPosition(TIMER_END, speed);
 
@@ -163,6 +165,7 @@ void PaperSignals::TimerExecution(String JSONData)
     MoveServoToPosition(TIMER_WIGGLE_BOTTOM, 10);
 
     lastTimerTime = seconds;
+    lastTimerUnit = unit;
   }
 }
 
@@ -833,6 +836,18 @@ String PaperSignals::getJsonHTTP(String host, String url){
     #endif
     return payload;
 }
+
+int PaperSignals::TimerConvertSeconds(int amount, String unit)
+{
+  if(unit == "h"){
+      return amount*60*60;  
+  }else if(unit == "min"){
+      return amount*60;
+  }else{
+      return amount; //fallback to default behaviour
+  }
+}
+
 void PaperSignals::RunPaperSignals()
 {
   String JSONData = getSignalByID(SignalID.c_str());
