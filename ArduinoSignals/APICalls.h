@@ -81,7 +81,7 @@ public:
 	String ShortsOrPantsType = "ShortsOrPants";
 	String UmbrellaType = "Umbrella";
 	String TimerType = "Timer";
-	String StretchBreak = "StretchBreak";
+	String StretchBreakType = "StretchBreak";
 	String RocketLaunchType = "RocketLaunch";
 	String CountdownType = "Countdown";
 	String TestSignalType = "TestSignal";
