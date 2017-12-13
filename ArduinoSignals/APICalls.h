@@ -55,8 +55,8 @@ limitations under the License.
 #define ROCKET_NOT_LAUNCHED 65
 
 // Celebrate
-#define CELEBRATE_TIME_REACHED 0
-#define CELEBRATE_NOT_YET 90
+#define STRETCHBREAK_TIME_REACHED 0
+#define STRETCHBREAK_NOT_YET 90
 
 // Test Signal
 #define TEST_FIRST_POSITION 10
@@ -81,7 +81,7 @@ public:
 	String ShortsOrPantsType = "ShortsOrPants";
 	String UmbrellaType = "Umbrella";
 	String TimerType = "Timer";
-	String CelebrateType = "StretchBreak";
+	String StretchBreakType = "StretchBreak";
 	String RocketLaunchType = "RocketLaunch";
 	String CountdownType = "Countdown";
 	String TestSignalType = "TestSignal";

@@ -272,11 +272,11 @@ void PaperSignals::CryptoCurrencyExecution(String JSONData)
 
 }
 
-void PaperSignals::CelebrateExecution(String JSONData)
+void PaperSignals::StretchBreakExecution(String JSONData)
 {
-  DynamicJsonBuffer celebrateBuffer;
-  JsonObject& celebrateRoot = celebrateBuffer.parseObject(JSONData);
-  breakTimeInterval = celebrateRoot["parameters"]["duration"]["amount"]; // In Minutes
+  DynamicJsonBuffer stretchBreakBuffer;
+  JsonObject& stretchBreakRoot = stretchBreakBuffer.parseObject(JSONData);
+  breakTimeInterval = stretchBreakRoot["parameters"]["duration"]["amount"]; // In Minutes
   breakTimeInterval = breakTimeInterval*60*1000;
 
   if(lastBreakTime > millis()) // Reset every 49 days
@@ -295,13 +295,13 @@ void PaperSignals::CelebrateExecution(String JSONData)
   {
     // Hands Up
     Serial.println("Break Time");
-    MoveServoToPosition(CELEBRATE_TIME_REACHED, 10);
+    MoveServoToPosition(STRETCHBREAK_TIME_REACHED, 10);
   }
   else
   {
     // Hands Down
     Serial.println("No Breaks Yet");
-    MoveServoToPosition(CELEBRATE_NOT_YET, 10);
+    MoveServoToPosition(STRETCHBREAK_NOT_YET, 10);
   }
 
 }
@@ -687,9 +687,9 @@ void PaperSignals::ParseIntentName(String intentName, String JSONData)
     {
       TimerExecution(JSONData);
     }
-    else if(intentName == CelebrateType)
+    else if(intentName == StretchBreakType)
     {
-      CelebrateExecution(JSONData);
+      StretchBreakExecution(JSONData);
     }
     else if(intentName == RocketLaunchType)
     {
