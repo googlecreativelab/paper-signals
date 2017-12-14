@@ -131,6 +131,7 @@ public:
 	double initialEthereum;
 
 	int lastTimerTime = 0;
+  String lastTimerUnit = "";
 
 	unsigned long breakTimeLength = 60000; // 1 Minute Default
 	unsigned long breakTimeInterval = 900000; // 15 Minute Default
@@ -146,4 +147,6 @@ public:
 
 	Servo myservo;
 	int currentServoPosition = 0;
+private:
+  int TimerConvertSeconds(int amount, String unit);
 };
