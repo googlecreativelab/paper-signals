@@ -114,7 +114,7 @@ public:
 	void CryptoCurrencyExecution(String JSONData);
 	void ShortsOrPantsExecution(String JSONData);
 	void UmbrellaExecution(String JSONData);
-	void CelebrateExecution(String JSONData);
+	void StretchBreakExecution(String JSONData);
 	void RocketExecution(String JSONData);
 	void TestSignalExecution(String JSONData);
 	void StockExecution(String JSONData);
