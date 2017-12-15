@@ -150,7 +150,7 @@ void PaperSignals::TimerExecution(String JSONData)
   Serial.print("Timer: ");
   Serial.println(seconds);
 
-  if(lastTimerTime != seconds)
+  if(updatedIntentTimeStamp)
   {
     int totalDistance = abs(TIMER_END - TIMER_START);
     int speed = (seconds*1000)/totalDistance;
@@ -161,8 +161,6 @@ void PaperSignals::TimerExecution(String JSONData)
     MoveServoToPosition(TIMER_WIGGLE_BOTTOM, 10);
     MoveServoToPosition(TIMER_WIGGLE_TOP, 10);
     MoveServoToPosition(TIMER_WIGGLE_BOTTOM, 10);
-
-    lastTimerTime = seconds;
   }
 }
 
