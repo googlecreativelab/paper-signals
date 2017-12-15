@@ -145,7 +145,7 @@ void PaperSignals::TimerExecution(String JSONData)
 {
   DynamicJsonBuffer jsonBuffer;
   JsonObject& root = jsonBuffer.parseObject(JSONData);
-  int seconds = root["parameters"]["duration"]["amount"];
+  int seconds = root["parameters"]["duration"]["inSeconds"];
 
   Serial.print("Timer: ");
   Serial.println(seconds);
