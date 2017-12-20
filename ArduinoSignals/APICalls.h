@@ -16,10 +16,16 @@ limitations under the License.
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#if defined(ESP32)
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <ESP32_Servo.h> // Include the ESP32 Arduino Servo Library instead of the original Arduino Servo Library
+#else
 #include <ESP8266WiFi.h>
-#include <WiFiClientSecure.h>
 #include <ESP8266HTTPClient.h>
 #include <Servo.h>
+#endif
+#include <WiFiClientSecure.h>
 #include <Time.h>
 #include "Credentials.h"
 
