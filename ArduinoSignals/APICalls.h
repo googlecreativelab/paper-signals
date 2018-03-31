@@ -20,7 +20,7 @@ limitations under the License.
 #include <WiFiClientSecure.h>
 #include <ESP8266HTTPClient.h>
 #include <Servo.h>
-#include <Time.h>
+#include <time.h>
 #include "Credentials.h"
 
 #define SERVO_PIN 14
